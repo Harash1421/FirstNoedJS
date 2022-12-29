@@ -21,7 +21,7 @@ db.connect((err) => {
 
 //Create Database Using Node JS
 app.get('/createDb', (req, res) => {
-    let sqlCreateDb = 'CREATE DATABASE Node_Test';
+    let sqlCreateDb = 'CREATE DATABASE `Database_Name`';
     db.query(sqlCreateDb, (err, result)=> {
         if(err) throw err;
         console.log(result);
@@ -31,59 +31,59 @@ app.get('/createDb', (req, res) => {
 
 //Create Table Using Node JS
 app.get('/createPostsTable', (req, res) => {
-    let sqlCreate = 'CREATE TABLE Posts(Id Int AUTO_INCREMENT, Title TEXT, Post TEXT, PRIMARY KEY (Id))';
+    let sqlCreate = 'CREATE TABLE `Table_Name`(Id Int AUTO_INCREMENT, Title TEXT, Post TEXT, PRIMARY KEY (Id))';
     db.query(sqlCreate, (err, result)=> {
         if(err) throw err;
         console.log(result);
-        res.send('Posts table created....');
+        res.send('table created....');
     });
 });
 
 //Insert Into Table Using Node JS
 app.get('/insertIntoTable', (req, res) => {
     let post = {Title: 'One', Post: 'Is Title One'};
-    let sqlInsert = 'INSERT INTO Posts SET ?';
+    let sqlInsert = 'INSERT INTO `Table_Name` SET ?';
     let query = db.query(sqlInsert, post, (err, result) => {
         if(err) throw err;
         console.log(result);
-        res.send('Post One Added....');
+        res.send('One Added....');
     });
 });
 
 //Get Posts From Table Using Node JS
 app.get('/getPostsTable', (req, res) => {
-    let sqlGet = 'SELECT * FROM Posts';
+    let sqlGet = 'SELECT * FROM `Table_Name`';
     let query = db.query(sqlGet, (err, result) => {
         if(err) throw err;
         console.log(result);
-        res.send('Posts Fetched....');
+        res.send('Data Fetched....');
     });
 });
 
 //Get Single Post From Table Using Node JS
 app.get('/getPostsTable/:Id', (req, res) => {
-    let sqlGet = `SELECT * FROM Posts WHERE Id = ${req.params.Id}`;
+    let sqlGet = `SELECT * FROM Table_Name WHERE Id = ${req.params.Id}`;
     let query = db.query(sqlGet, (err, results) => {
         if(err) throw err;
         console.log(results);
-        res.send('Post Fetched....');
+        res.send('Data Fetched....');
     });
 });
 
 //Update Posts In Table Using Node JS
 app.get('/updatePostTable/:Id', (req, res) => {
     let updateTitle = 'Updated Title';
-    let sqlGet = `Update Posts Set Title='${updateTitle}' WHERE Id = ${req.params.Id}`;
+    let sqlGet = `Update Table_Name Set Title='${updateTitle}' WHERE Id = ${req.params.Id}`;
     let query = db.query(sqlGet, (err, results) => {
         if(err) throw err;
         console.log(results);
-        res.send('Post Updated Complete....');
+        res.send('Data Updated Complete....');
     });
 });
 
 //Delete Posts In Table Using Node JS
 app.get('/deletePostTable/:Id', (req, res) => {
-    let sqlGet = `DELETE FROM Posts WHERE Id = ${req.params.Id}`;
+    let sqlGet = `DELETE FROM Table_Name WHERE Id = ${req.params.Id}`;
     let query = db.query(sqlGet, (err, results) => {
         if(err) throw err;
         console.log(results);
