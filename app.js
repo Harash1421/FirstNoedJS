@@ -3,7 +3,7 @@ var express = require('express');
 
 const app = express();
 
-//Connection NodeJS To MYSQL Server 
+//Connection NodeJS To MySQL Server 
 const db = mysql.createConnection({
     host : 'localhost',
     user : 'root',
